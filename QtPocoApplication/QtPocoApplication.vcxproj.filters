@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ui">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="3rdparty">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="3rdparty\qt-solutions">
+      <UniqueIdentifier>{6b5acf95-3b62-461a-b2ed-6cce9a13a09f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty\qt-solutions\qtsingleapplication">
+      <UniqueIdentifier>{5f0c098d-f91c-46b3-9a99-98052b074fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3rdparty\qt-solutions\qtsingleapplication\src">
+      <UniqueIdentifier>{1442f421-f70a-441a-9c07-8392dfc2dd3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="QtPocoApplication.qrc">
+      <Filter>resources</Filter>
+    </QtRcc>
+    <QtUic Include="QtPocoApplication.ui">
+      <Filter>ui</Filter>
+    </QtUic>
+    <ClCompile Include="AppWindow.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <None Include="QtPocoApplication.ico">
+      <Filter>resources</Filter>
+    </None>
+    <ResourceCompile Include="QtPocoApplication.rc">
+      <Filter>resources</Filter>
+    </ResourceCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\qt-solutions\qtsingleapplication\src\qtlocalpeer.cpp">
+      <Filter>3rdparty\qt-solutions\qtsingleapplication\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\qt-solutions\qtsingleapplication\src\qtsingleapplication.cpp">
+      <Filter>3rdparty\qt-solutions\qtsingleapplication\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdparty\qt-solutions\qtsingleapplication\src\qtsinglecoreapplication.cpp">
+      <Filter>3rdparty\qt-solutions\qtsingleapplication\src</Filter>
+    </ClCompile>
+    <ClCompile Include="App.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="AppSplashScreen.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="AppLicense.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="AppWindow.h">
+      <Filter>src</Filter>
+    </QtMoc>
+    <QtMoc Include="..\3rdparty\qt-solutions\qtsingleapplication\src\qtlocalpeer.h">
+      <Filter>3rdparty\qt-solutions\qtsingleapplication\src</Filter>
+    </QtMoc>
+    <QtMoc Include="..\3rdparty\qt-solutions\qtsingleapplication\src\qtsingleapplication.h">
+      <Filter>3rdparty\qt-solutions\qtsingleapplication\src</Filter>
+    </QtMoc>
+    <QtMoc Include="..\3rdparty\qt-solutions\qtsingleapplication\src\qtsinglecoreapplication.h">
+      <Filter>3rdparty\qt-solutions\qtsingleapplication\src</Filter>
+    </QtMoc>
+    <QtMoc Include="AppSplashScreen.h">
+      <Filter>src</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="App.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="AppLicense.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

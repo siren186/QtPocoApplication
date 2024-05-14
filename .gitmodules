@@ -1,0 +1,6 @@
+[submodule "3rdparty/poco"]
+	path = 3rdparty/poco
+	url = https://github.com/pocoproject/poco.git
+[submodule "3rdparty/qt-solutions"]
+	path = 3rdparty/qt-solutions
+	url = https://github.com/qtproject/qt-solutions.git
