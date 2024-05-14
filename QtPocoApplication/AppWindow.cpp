@@ -68,7 +68,7 @@ void AppWindow::onMenuQuitApp(bool)
 
 void AppWindow::onTaskResult(const Poco::AutoPtr<Notif::TaskResult>& pNf)
 {
-    // Attentino: This is running in notification sender thread...
+    // Attention: This is running in notification sender thread...
     // Do not visit UI widgets
     poco_information(Poco::Util::Application::instance().logger(), "onTaskResult()");
     auto& m = pNf->getMap();
