@@ -5,11 +5,15 @@ int main(int argc, char *argv[])
 {
     try
     {
-        Poco::AutoPtr<App> app = new App(argc, argv);
-        return app->run();
+        App app(argc, argv);
+        return app.run();
+    }
+    catch (Poco::Exception&)
+    {
+        return Poco::Util::Application::EXIT_CONFIG;
     }
     catch (std::exception&)
     {
-        return Poco::Util::Application::EXIT_CONFIG;
+        return Poco::Util::Application::EXIT_SOFTWARE;
     }
 }

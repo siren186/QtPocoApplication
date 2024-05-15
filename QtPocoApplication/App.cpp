@@ -30,13 +30,12 @@ void App::initialize(Poco::Util::Application& self)
     watcher.connect(&watcher, &QFutureWatcher<void>::finished, &eventLoop, &QEventLoop::quit);
     watcher.setFuture(QtConcurrent::run([&]()
         {
-            // Background initialization...
-
+            // 0. Starting time
             auto tp = std::chrono::high_resolution_clock::now();
 
+            // 1. Check license
             if (!AppLicense::check())
             {
-                // Switch to UI thread and wait
                 QMetaObject::invokeMethod(&splash, "alert", Qt::BlockingQueuedConnection,
                     Q_ARG(const QString&, "tip"),
                     Q_ARG(const QString&, "Bad license !"),
@@ -44,27 +43,34 @@ void App::initialize(Poco::Util::Application& self)
                 throw Poco::ApplicationException("Bad application license");
             }
 
-            // Switch to UI thread and wait for UI result
+            // 2. Check environment
             int ret = QMessageBox::NoButton;
             QVariantMap buttons{ {"Yes", QMessageBox::Ok}, {"No", QMessageBox::Cancel} };
             QMetaObject::invokeMethod(&splash, "question", Qt::BlockingQueuedConnection,
                 Q_RETURN_ARG(int, ret),
                 Q_ARG(const QString&, "Continue..."),
-                Q_ARG(const QString&, "Do you want continue ?"),
+                Q_ARG(const QString&, "Lost X module, Do you want continue ?"),
                 Q_ARG(const QVariantMap&, buttons));
             if (ret != QMessageBox::Ok)
             {
                 throw Poco::ApplicationException("User canceled");
             }
 
-            // Set application global properties here
-            config().setString("application.about.version", "1.0.0");
-
+            // 3. Load configuration
             loadConfiguration();
+
+            // 4. Add more global properties
+            config().setString("application.about.version", "1.0.0");
+            config().setUInt("application.about.versionNumber", 0x010000);
+            config().setString("application.about.company", "HelloWorld");
+
+            // 5. Add sub-systems
             addSubSystems();
+
+            // 6. Initialize all sub-systems
             Poco::Util::Application::initialize(*this);
 
-            // Make sure splash screen shows enough time
+            // 7. Make sure splash screen shows enough time
             auto elapsed = std::chrono::high_resolution_clock::now() - tp;
             auto wait = std::chrono::seconds(3) - elapsed;
             if (wait.count() > 0)
@@ -100,7 +106,7 @@ int App::main(const std::vector<std::string>& args)
 
 void App::addSubSystems()
 {
-    auto dir = Poco::Path::forDirectory(config().getString("application.dir")).toString();
+    auto dir = config().getString("application.dir");
 
     Poco::ClassLoader<CaseManager> caseMgrDLL;
     caseMgrDLL.loadLibrary(dir + "CaseManager.dll");
@@ -112,6 +118,7 @@ void App::addSubSystems()
     auto taskMgr = taskMgrDLL.create("TaskManagerImpl");
     addSubsystem(taskMgr);
 
+    // Connect signals and slots
     caseMgr->onOpen += Poco::Delegate<TaskManager, const std::string&, false>(taskMgr, &TaskManager::onCaseOpen);
     caseMgr->onClose += Poco::delegate(taskMgr, &TaskManager::onCaseClose);
 }
